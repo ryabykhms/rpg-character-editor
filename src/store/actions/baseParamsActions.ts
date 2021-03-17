@@ -1,0 +1,6 @@
+export enum BaseParamsActions {
+  SET_POWER = 'SET_POWER',
+  SET_AGILITY = 'SET_AGILITY',
+  SET_INTELLECT = 'SET_INTELLECT',
+  SET_CHARISMA = 'SET_CHARISMA',
+}
