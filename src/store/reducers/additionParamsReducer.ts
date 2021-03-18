@@ -37,7 +37,13 @@ export function additionParams(
       return {
         ...state,
         evasion: payload + 10,
-        energy: payload,
+      };
+
+    case BaseParamsActions.SET_AGILITY_INTELLECT:
+      return {
+        ...state,
+        evasion: payload.agility + 10,
+        energy: payload.intellect + payload.agility,
       };
 
     case StateActions.SET_STATE:

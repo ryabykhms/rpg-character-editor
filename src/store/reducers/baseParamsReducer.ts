@@ -33,6 +33,13 @@ export function baseParams(
         charisma: payload,
       };
 
+    case BaseParamsActions.SET_AGILITY_INTELLECT:
+      return {
+        ...state,
+        agility: payload.agility,
+        intellect: payload.intellect,
+      };
+
     case StateActions.SET_STATE:
       return {
         ...payload.baseParams,

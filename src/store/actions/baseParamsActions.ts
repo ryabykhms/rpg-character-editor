@@ -3,6 +3,7 @@ export enum BaseParamsActions {
   SET_AGILITY = 'SET_AGILITY',
   SET_INTELLECT = 'SET_INTELLECT',
   SET_CHARISMA = 'SET_CHARISMA',
+  SET_AGILITY_INTELLECT = 'SET_AGILITY_INTELLECT',
 }
 
 export const setPower = (power: number) => ({
@@ -18,6 +19,14 @@ export const setAgility = (agility: number) => ({
 export const setIntellect = (intellect: number) => ({
   type: BaseParamsActions.SET_INTELLECT,
   payload: intellect,
+});
+
+export const setAgilityAndIntellect = (agility: number, intellect: number) => ({
+  type: BaseParamsActions.SET_AGILITY_INTELLECT,
+  payload: {
+    agility,
+    intellect,
+  },
 });
 
 export const setCharisma = (charisma: number) => ({
