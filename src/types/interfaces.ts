@@ -1,3 +1,5 @@
+import { Levels } from '../constants';
+
 export interface IAppState {
   name: string;
   baseParams: IBaseParamsState;
@@ -6,10 +8,10 @@ export interface IAppState {
 }
 
 export interface IBaseParamsState {
-  power: number;
-  agility: number;
-  intellect: number;
-  charisma: number;
+  power: keyof typeof Levels;
+  agility: keyof typeof Levels;
+  intellect: keyof typeof Levels;
+  charisma: keyof typeof Levels;
 }
 
 export interface IAdditionParamsState {
@@ -24,5 +26,5 @@ export interface ISkillsState {
 
 export interface ISkillsItemState {
   base: keyof IBaseParamsState;
-  value: number;
+  value: keyof typeof Levels;
 }
