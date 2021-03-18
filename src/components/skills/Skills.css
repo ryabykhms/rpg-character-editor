@@ -1,0 +1,16 @@
+.skills {
+  overflow-x: auto;
+}
+
+.skills__table {
+  min-width: 300px;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+@media (max-width: 500px) {
+  .skills {
+    margin: 0 auto;
+  }
+}

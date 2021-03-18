@@ -1,6 +1,8 @@
 import { useDispatch, useSelector } from 'react-redux';
+import { Levels } from '../../constants';
 import { setSkill } from '../../store';
 import { IAppState, IBaseParamsState } from '../../types';
+import './Skills.css';
 
 const Skills = (props: IBaseParamsState) => {
   const dispatch = useDispatch();
@@ -16,25 +18,40 @@ const Skills = (props: IBaseParamsState) => {
     }
   };
 
-  const skillsList = Object.keys(skills).map((skill, id) => (
-    <div key={id}>
-      <span>{skill[0].toUpperCase() + skill.slice(1)}: </span>
-      <span>{skills[skill].value} </span>
-      <button
-        onClick={() => {
-          onTrain(skill);
-        }}
-      >
-        Train
-      </button>
-    </div>
-  ));
+  const skillsList = Object.keys(skills).map((skill, id) => {
+    const name = skill[0].toUpperCase() + skill.slice(1);
+    const levelNumber: keyof typeof Levels = skills[skill].value;
+    const level = Levels[levelNumber];
+    return (
+      <tr key={id}>
+        <td>{name}: </td>
+        <td>{level} </td>
+        <td>
+          <button
+            className="button"
+            onClick={() => {
+              onTrain(skill);
+            }}
+          >
+            Train
+          </button>
+        </td>
+      </tr>
+    );
+  });
 
   return (
-    <div>
-      <hr />
-
-      {skillsList}
+    <div className="skills">
+      <table className="skills__table">
+        <thead>
+          <tr>
+            <th>Skill</th>
+            <th>Level</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>{skillsList}</tbody>
+      </table>
     </div>
   );
 };
