@@ -1,6 +1,10 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { IAppState, IBaseParamsState } from '../../types';
-import { setAgility, setIntellect, setCharisma, setName, setPower } from '../../store';
+import { setCharisma, setName, setPower, setAgilityAndIntellect } from '../../store';
+import React from 'react';
+import TextInput from '../textInput/TextInput';
+import './BaseInfo.css';
+import { MAX_LEVEL_NUMBER } from '../../constants';
 
 type ActionCreator = (param: number) => { type: string; payload: number };
 
@@ -16,8 +20,25 @@ const BaseInfo = (props: IBaseParamsState) => {
     actionCreator: ActionCreator
   ) => {
     const param = +event.target.value;
-    if (!Number.isNaN(param)) {
+    if (!Number.isNaN(param) && param <= MAX_LEVEL_NUMBER) {
       dispatch(actionCreator(param));
+    }
+  };
+
+  const onChangeAgilityIntellect = (
+    event: React.ChangeEvent<HTMLInputElement>,
+    param: keyof IBaseParamsState
+  ) => {
+    const value = +event.target.value;
+
+    if (Number.isNaN(value) || value > MAX_LEVEL_NUMBER) {
+      return;
+    }
+
+    if (param === 'agility') {
+      dispatch(setAgilityAndIntellect(value, intellect));
+    } else {
+      dispatch(setAgilityAndIntellect(agility, value));
     }
   };
 
@@ -30,10 +51,10 @@ const BaseInfo = (props: IBaseParamsState) => {
         onChangeParam(event, setPower);
         break;
       case 'agility':
-        onChangeParam(event, setAgility);
+        onChangeAgilityIntellect(event, 'agility');
         break;
       case 'intellect':
-        onChangeParam(event, setIntellect);
+        onChangeAgilityIntellect(event, 'intellect');
         break;
       case 'charisma':
         onChangeParam(event, setCharisma);
@@ -41,28 +62,51 @@ const BaseInfo = (props: IBaseParamsState) => {
     }
   };
 
+  const onInputName = (name: string) => {
+    dispatch(setName(name));
+  };
+
   return (
-    <div>
-      <label>
-        <span>Name</span>
-        <input onChange={(event) => dispatch(setName(event.target.value))} value={name} />
-      </label>
-      <label>
-        <span>Power</span>
-        <input onChange={(event) => onChangeBaseParams(event, 'power')} value={power} />
-      </label>
-      <label>
-        <span>Agility</span>
-        <input onChange={(event) => onChangeBaseParams(event, 'agility')} value={agility} />
-      </label>
-      <label>
-        <span>Intellect</span>
-        <input onChange={(event) => onChangeBaseParams(event, 'intellect')} value={intellect} />
-      </label>
-      <label>
-        <span>Charisma</span>
-        <input onChange={(event) => onChangeBaseParams(event, 'charisma')} value={charisma} />
-      </label>
+    <div className="base-info">
+      <TextInput
+        className="base-info__title"
+        text={name ? name : 'Name'}
+        onChangeText={onInputName}
+      />
+      <div className="base-info__params">
+        <label className="base-info__label">
+          <input
+            className="base-info__input"
+            onChange={(event) => onChangeBaseParams(event, 'power')}
+            value={power}
+          />
+          <span>Power</span>
+        </label>
+        <label className="base-info__label">
+          <input
+            className="base-info__input"
+            onChange={(event) => onChangeBaseParams(event, 'agility')}
+            value={agility}
+          />
+          <span>Agility</span>
+        </label>
+        <label className="base-info__label">
+          <input
+            className="base-info__input"
+            onChange={(event) => onChangeBaseParams(event, 'intellect')}
+            value={intellect}
+          />
+          <span>Intellect</span>
+        </label>
+        <label className="base-info__label">
+          <input
+            className="base-info__input"
+            onChange={(event) => onChangeBaseParams(event, 'charisma')}
+            value={charisma}
+          />
+          <span>Charisma</span>
+        </label>
+      </div>
     </div>
   );
 };
