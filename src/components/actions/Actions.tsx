@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { loadState, setLifePower } from '../../store';
 import { IAppState } from '../../types';
+import './Actions.css';
 
 const Actions = () => {
   const dispatch = useDispatch();
@@ -23,17 +24,21 @@ const Actions = () => {
     }
   };
   return (
-    <>
-      <div>
-        <hr />
-        <button onClick={onDamage}>Damage</button>
+    <div className="actions">
+      <div className="action">
+        <button className="button button--damage" onClick={onDamage}>
+          Damage
+        </button>
       </div>
-      <div>
-        <hr />
-        <button onClick={onSave}>Save</button>
-        <button onClick={onLoad}>Load</button>
+      <div className="action">
+        <button className="button button--save" onClick={onSave}>
+          Save
+        </button>
+        <button className="button button--load" onClick={onLoad}>
+          Load
+        </button>
       </div>
-    </>
+    </div>
   );
 };
 export default Actions;

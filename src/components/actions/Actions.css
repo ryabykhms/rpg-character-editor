@@ -1,0 +1,10 @@
+.action {
+  margin-bottom: 20px;
+}
+
+@media (max-width: 500px) {
+  .actions {
+    text-align: center;
+    width: 100%;
+  }
+}
