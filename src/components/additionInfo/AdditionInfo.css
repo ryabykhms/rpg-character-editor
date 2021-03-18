@@ -1,0 +1,48 @@
+.addition-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 0;
+  flex-wrap: wrap;
+}
+
+.addition-info__item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.addition-info__img {
+  width: 32px;
+  margin-right: 10px;
+}
+
+.progress--evasion::-moz-progress-bar {
+  background: yellow;
+}
+
+.progress--evasion::-webkit-progress-value {
+  background: yellow;
+}
+
+.progress--evasion {
+  color: yellow;
+}
+
+.progress--energy::-moz-progress-bar {
+  background: blue;
+}
+
+.progress--energy::-webkit-progress-value {
+  background: blue;
+}
+
+.progress--energy {
+  color: blue;
+}
+
+@media (max-width: 500px) {
+  .addition-info__item {
+    width: 100%;
+  }
+}
