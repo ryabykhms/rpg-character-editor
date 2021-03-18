@@ -1,6 +1,6 @@
 import { AnyAction } from 'redux';
 import { IBaseParamsState } from '../../types';
-import { BaseParamsActions } from '../actions';
+import { BaseParamsActions, StateActions } from '../actions';
 import { defaultState } from '../defaultState';
 
 export function baseParams(
@@ -31,6 +31,11 @@ export function baseParams(
       return {
         ...state,
         charisma: payload,
+      };
+
+    case StateActions.SET_STATE:
+      return {
+        ...payload.baseParams,
       };
 
     default:

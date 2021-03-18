@@ -23,6 +23,6 @@ export interface ISkillsState {
 }
 
 export interface ISkillsItemState {
-  base: string;
+  base: keyof IBaseParamsState;
   value: number;
 }
